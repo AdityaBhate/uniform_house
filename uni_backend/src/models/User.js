@@ -11,6 +11,12 @@ const userSchema = new mongoose.Schema({
 	password: { type: String, required: true },
 	createdAt: { type: Date, default: Date.now },
 	isAdmin: { type: Boolean, default: false },
+	cart: [
+		{
+			uniformId: { type: mongoose.Schema.Types.ObjectId, ref: "Uniform" },
+			quantity: { type: Number, required: true, default: 1 },
+		},
+	],
 });
 
 userSchema.pre("save", async function (next) {

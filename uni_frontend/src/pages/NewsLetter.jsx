@@ -1,6 +1,6 @@
 import { useState } from "react";
 import lookbook from "../assets/lookbook.jpg";
-import { useAuth } from "../store/auth";
+import { useAuth } from "../utils/useAuth";
 
 const NewsLetter = () => {
 	const [data, setData] = useState({

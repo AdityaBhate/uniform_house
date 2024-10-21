@@ -2,7 +2,6 @@ import { useState } from "react";
 import sideImage from "../assets/side_image1.jpg";
 import sideImage2 from "../assets/school_uniform1.jpg";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
 import { indianStates } from "../utils/constants";
 
@@ -21,7 +20,6 @@ const Register = () => {
 	});
 
 	const navigate = useNavigate();
-	const { storeTokenInLS } = useAuth();
 
 	const handleInput = (e) => {
 		const { name, value } = e.target;

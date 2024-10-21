@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../store/auth";
+import { useAuth } from "../utils/useAuth.jsx";
 import { toast } from "react-toastify";
-
-const URL = "http://localhost:3000/api/auth/login";
 
 const Login = () => {
 	const [user, setUser] = useState({
@@ -12,32 +10,19 @@ const Login = () => {
 	});
 
 	const navigate = useNavigate();
-	const { storeTokenInLS } = useAuth();
+	const { login } = useAuth();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		try {
-			const response = await fetch(URL, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(user),
-			});
+		const { email, password } = user;
+		const result = await login(email, password);
 
-			const data = await response.json();
-
-			if (response.ok) {
-				toast.success("Login successful");
-				setUser({ email: "", password: "" });
-				storeTokenInLS(data.token);
-				navigate("/");
-			} else {
-				toast.error(data.extraDetails || data.message);
-			}
-		} catch (error) {
-			toast.error("Login failed");
-			console.error("Error in login: ", error);
+		if (result.success) {
+			toast.success("Login successful");
+			setUser({ email: "", password: "" });
+			navigate("/");
+		} else {
+			toast.error(result.error);
 		}
 	};
 

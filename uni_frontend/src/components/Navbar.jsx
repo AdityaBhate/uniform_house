@@ -6,10 +6,10 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import logo from "../assets/logo.png";
-import { useAuth } from "../store/auth";
+import { useAuth } from "../utils/useAuth";
 
 const Navbar = () => {
-	const { isLoggedIn, user } = useAuth();
+	const { isAuthenticated, user } = useAuth();
 	const [showLoginMenu, setShowLoginMenu] = useState(false);
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
 
@@ -46,10 +46,10 @@ const Navbar = () => {
 					</div>
 					<div className='hidden md:block'>
 						<div className='ml-4 flex items-center md:ml-6'>
-							{isLoggedIn ? (
+							{isAuthenticated ? (
 								<>
 									<p className='text-black px-3 py-2 rounded-md text-sm font-medium'>
-										Hi, {user.firstName}
+										Hi, {user?.name}
 									</p>
 									<Link
 										to='/cart'
@@ -116,7 +116,7 @@ const Navbar = () => {
 					</div>
 					<div className='pt-4 pb-3 border-t border-gray-700'>
 						<div className='flex items-center px-5'>
-							{isLoggedIn ? (
+							{isAuthenticated ? (
 								<>
 									<p className='text-black px-3 py-2 rounded-md text-sm font-medium'>
 										Hi, {user.firstName}

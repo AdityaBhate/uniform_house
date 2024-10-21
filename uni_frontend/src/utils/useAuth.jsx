@@ -19,6 +19,7 @@ export const AuthProvider = ({ children }) => {
 				method: "GET",
 				credentials: "include",
 			});
+			console.log(response);
 			if (response.ok) {
 				const userData = await response.json();
 				setUser(userData);

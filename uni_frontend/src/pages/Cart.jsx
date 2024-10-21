@@ -13,7 +13,7 @@ const Cart = () => {
 		(sum, item) => sum + item.price * item.quantity,
 		0
 	);
-	const gst = 0; // Assuming GST is 0 as per your original code
+	const gst = 0;
 	const netAmount = subtotal + gst;
 
 	return (
@@ -86,7 +86,6 @@ const CartItem = ({ item, updateQuantity, removeItem }) => (
 					<p className='font-semibold'>{item.name}</p>
 					<p>Size: {item.size}</p>
 					<p>Color: {item.color}</p>
-					<p>Tax Type: inclusive</p>
 				</div>
 			</div>
 		</td>
